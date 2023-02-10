@@ -3,44 +3,34 @@ body {
   margin: 0px;
   padding: 0px;
 }
-
-.mountain {
-  min-height: auto;
-  width: 0;
-  height: 0;
-  border-right: 150px solid transparent;
-  border-left: 150px solid transparent;
-  border-bottom: 200px solid #ceb27e;
-  border-radius: 15px 0px 0px 0px;
-  z-index: -20;
-  position: absolute;
-  top: 350px;
+body:hover {
+  animation: dusk 2s;
+  animation: downSun 5s;
+  animation-fill-mode: forwards;
 }
-.mountain:before {
-  position: absolute;
-  content: "";
-  left: -34px;
-  width: 0;
-  height: 0;
-  border-right: 30px solid transparent;
-  border-left: 34px solid transparent;
-  border-bottom: 40px solid #ffffff;
+body:hover:hover + .sun {
+  animation: downSun 2s;
+  animation-fill-mode: forwards;
 }
-.mountain--mountain1 {
-  left: 35px;
-}
-.mountain--mountain2 {
-  left: 20px;
-}
-.mountain--mountain3 {
-  left: 60px;
-}
-@keyframes mountain {
+@keyframes dusk {
   100% {
-    transform: translateX(-100vw);
+    background-color: #a0a0a0;
+  }
+}
+@keyframes downSun {
+  50% {
+    top: 50%;
+  }
+  100% {
+    background-color: #a0a0a0;
+    top: 100%;
+    transform: translateX(-100%);
   }
 }
 
+.sky {
+  height: 100px;
+}
 .sky__cloud {
   background-color: #ffffff;
   height: 35px;
@@ -73,23 +63,59 @@ body {
 }
 .sky__cloud--cloud1 {
   top: 240px;
-  animation: cloud 10s 18px infinite linear;
+  animation: cloud 10s infinite linear;
+  opacity: 0.4;
 }
 .sky__cloud--cloud2 {
   top: 160px;
   animation: cloud 10s infinite linear;
+  opacity: 0.6;
 }
 .sky__cloud--cloud3 {
   top: 60px;
   animation: cloud 10s 5s infinite linear;
+  opacity: 0.8;
 }
 .sky__cloud--cloud4 {
   top: 300px;
   animation: cloud 10s 12s infinite linear;
 }
+.sky__cloud--cloud5 {
+  top: 350px;
+  animation: cloud 10s 12s infinite linear;
+}
 @keyframes cloud {
   100% {
+    opacity: 0.4;
     transform: translateX(-100vw);
+  }
+}
+@keyframes night {
+  20%, 80% {
+    filter: brightness(100%);
+  }
+}
+
+.sun {
+  background: radial-gradient(#f8f07d 55%, #666666);
+  width: 150px;
+  height: 150px;
+  margin-left: 25%;
+  opacity: 0.3;
+  border-radius: 50%;
+  z-index: -1;
+  animation: downSun 5s;
+}
+.sun:hover + .condor {
+  transform: scale(0.5) rotate(25deg);
+  animation: down 3s;
+  animation-fill-mode: forwards;
+}
+@keyframes down {
+  100% {
+    transform: translateY(100%);
+    opacity: 0;
+    display: none;
   }
 }
 
@@ -98,10 +124,7 @@ body {
   top: 20%;
   left: 55%;
   animation: fly 4s infinite;
-  transition: transform 0.6s inherit;
-}
-.condor:hover {
-  transform: scale(0.5) rotate(25deg);
+  transition: transform 0.6s;
 }
 .condor__head {
   background-color: #fad590;

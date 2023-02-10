@@ -7,60 +7,62 @@ $secondary-color: #666666;
 $eye: #000000;
 $head_color: #fad590;
 $beak: #ceb27e;
+$sun: #f8f07d;
+$dusk: #a0a0a0;
+
 
 body {
     background-color: $sky;
     margin: 0px;
     padding: 0px;
-}
-// .container {
-//     display: flex;
-//     background-color: #000000;
-    .mountain {
-        min-height: auto;
-        width: 0;
-        height: 0;
-        border-right: 150px solid transparent;
-        border-left: 150px solid transparent;
-        border-bottom: 200px solid $beak;
-        border-radius: 15px 0px 0px 0px;
-        z-index: -20;
-        position: absolute;
-        top: 350px;
 
-        &:before {
-            position: absolute;
-            content: "";
-            left: -34px;
-            width: 0;
-            height: 0;
-            border-right: 30px solid transparent;
-            border-left: 34px solid transparent;
-            border-bottom: 40px solid $back-ground-white;
-        }
-        &--mountain1 {
-            left: 35px;
+    &:hover {
+        // &::after,
+        // &::before {
+        //     &:hover+.sun {
+        //         animation: downSun 2s;
+        //         animation-fill-mode: forwards;
+        //     }
+
+        //     animation: dusk 2s;
+        //     // animation: downSun 5s;
+        //     animation-fill-mode: forwards;
+        // }
+
+        &:hover +.sun {
+            animation: downSun 2s;
+            animation-fill-mode: forwards;
         }
 
-        &--mountain2 {
-            left: 20px;
-            // animation: mountain 10s infinite linear;
-        }
+        animation: dusk 2s;
+        animation: downSun 5s;
+        animation-fill-mode: forwards;
+    }
 
-        &--mountain3 {
-            left: 60px;
-            // animation: mountain 10s 5s infinite linear;
-        }
 
-        @keyframes mountain {
-            100% {
-                transform: translateX(calc(-100vw));
-            }
+
+    @keyframes dusk {
+        100% {
+            background-color: $dusk;
         }
     }
-// }
+
+    @keyframes downSun {
+        50% {
+            top: 50%;
+        }
+
+        100% {
+            background-color: $dusk;
+            top: 100%;
+            transform: translateX(-100%);
+        }
+    }
+}
 
 .sky {
+    height: 100px;
+
     &__cloud {
         background-color: $back-ground-white;
         height: 35px;
@@ -93,19 +95,23 @@ body {
             right: 10px;
         }
 
+
         &--cloud1 {
             top: 240px;
-            animation: cloud 10s 18px infinite linear;
+            animation: cloud 10s infinite linear;
+            opacity: 0.4;
         }
 
         &--cloud2 {
             top: 160px;
             animation: cloud 10s infinite linear;
+            opacity: 0.6;
         }
 
         &--cloud3 {
             top: 60px;
             animation: cloud 10s 5s infinite linear;
+            opacity: 0.8;
         }
 
         &--cloud4 {
@@ -113,12 +119,51 @@ body {
             animation: cloud 10s 12s infinite linear;
         }
 
+        &--cloud5 {
+            top: 350px;
+            animation: cloud 10s 12s infinite linear;
+        }
+
         @keyframes cloud {
             100% {
+                opacity: 0.4;
                 transform: translateX(calc(-100vw));
             }
         }
+
+        @keyframes night {
+
+            20%,
+            80% {
+                filter: brightness(100%);
+            }
+        }
     }
+}
+
+.sun {
+    background: radial-gradient($sun 55%, $secondary-color );
+    width: 150px;
+    height: 150px;
+    margin-left: 25%;
+    opacity: 0.3;
+    border-radius: 50%;
+    z-index: -1;
+    animation: downSun 5s;
+    &:hover+.condor {
+        transform: scale(0.5) rotate(25deg);
+        animation: down 3s;
+        animation-fill-mode: forwards;
+    }
+
+    @keyframes down {
+        100% {
+            transform: translateY(100%);
+            opacity: 0;
+            display: none;
+        }
+    }
+
 }
 
 .condor {
@@ -126,11 +171,7 @@ body {
     top: 20%;
     left: 55%;
     animation: fly 4s infinite;
-    transition: transform 0.6s inherit;
-
-    &:hover {
-        transform: scale(0.5) rotate(25deg);
-    }
+    transition: transform 0.6s;
 
     &__head {
         background-color: $head_color;
