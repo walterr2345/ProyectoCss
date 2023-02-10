@@ -13,6 +13,52 @@ body {
     margin: 0px;
     padding: 0px;
 }
+// .container {
+//     display: flex;
+//     background-color: #000000;
+    .mountain {
+        min-height: auto;
+        width: 0;
+        height: 0;
+        border-right: 150px solid transparent;
+        border-left: 150px solid transparent;
+        border-bottom: 200px solid $beak;
+        border-radius: 15px 0px 0px 0px;
+        z-index: -20;
+        position: absolute;
+        top: 350px;
+
+        &:before {
+            position: absolute;
+            content: "";
+            left: -34px;
+            width: 0;
+            height: 0;
+            border-right: 30px solid transparent;
+            border-left: 34px solid transparent;
+            border-bottom: 40px solid $back-ground-white;
+        }
+        &--mountain1 {
+            left: 35px;
+        }
+
+        &--mountain2 {
+            left: 20px;
+            // animation: mountain 10s infinite linear;
+        }
+
+        &--mountain3 {
+            left: 60px;
+            // animation: mountain 10s 5s infinite linear;
+        }
+
+        @keyframes mountain {
+            100% {
+                transform: translateX(calc(-100vw));
+            }
+        }
+    }
+// }
 
 .sky {
     &__cloud {
@@ -75,26 +121,15 @@ body {
     }
 }
 
-.bird {
+.condor {
     position: absolute;
     top: 20%;
     left: 55%;
     animation: fly 4s infinite;
+    transition: transform 0.6s inherit;
 
     &:hover {
-        animation: deced none;
-        transform-origin: left;
-        transition-delay: 5s;
-    }
-
-    @keyframes decend {
-        from {
-            transform: rotate(35deg);
-        }
-
-        to {
-            transform: rotate(65deg);
-        }
+        transform: scale(0.5) rotate(25deg);
     }
 
     &__head {
@@ -135,7 +170,7 @@ body {
     &__body {
         background-color: $condor-body;
         height: 100px;
-        width: 240px; 
+        width: 240px;
         position: relative;
         top: 80px;
         right: 100px;
@@ -213,7 +248,6 @@ body {
             transform: rotate(20deg);
         }
     }
-
 }
 
 @keyframes fly {
